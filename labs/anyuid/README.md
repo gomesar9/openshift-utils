@@ -14,3 +14,24 @@ A pasta `advanced` contém o exemplo direto do pod, com securityContext setados 
 
 
 Bom experimento.
+
+
+## Basic
+
+O script [run.sh][bsc-run] pode ser usado para fazer deploy dos recursos.
+
+Serão criados:
+- Projeto
+- ServiceAccount
+- Role
+- Rolebinding
+- Deployment (x2)
+
+O deployment [`anyuid-application-example`][bsc-dpl-common] segue o modelo padrão, não tendo privilégios. 
+
+Já o deployment [`anyuid-application-priv-example`][bsc-dpl-privileged] utiliza a [serviceAccount][bsc-dpl-prv-serviceaccount] criada para rodar, conseguindo executar ações privilegiadas como root.
+
+[bsc-run]: https://github.com/gomesar9/openshift-utils/blob/develop/labs/anyuid/basic/run.sh
+[bsc-dpl-common]: https://github.com/gomesar9/openshift-utils/blob/develop/labs/anyuid/basic/04-deployment-common.yaml
+[bsc-dpl-privileged]: https://github.com/gomesar9/openshift-utils/blob/develop/labs/anyuid/basic/05-deployment-privileged.yaml
+[bsc-dpl-prv-serviceaccount]: https://github.com/gomesar9/openshift-utils/blob/develop/labs/anyuid/basic/05-deployment-privileged.yaml#L16
