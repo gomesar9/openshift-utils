@@ -1,0 +1,28 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: anyuid-application-example
+  namespace: lab-anyuid
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: anyuid-application-example
+  template:
+    metadata:
+      labels:
+        app: anyuid-application-example
+    spec:
+      containers:
+        - name: anyuid-application-example
+          image: 'quay.io/gomesar9/openshift-utils:anyuid'
+          env:
+          - name: SLEEP_TIME
+            value: 2m
+          serviceAccountName: lab-privileged-sa
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  revisionHistoryLimit: 1
